@@ -6,6 +6,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// 環境変数から接続情報を設定し、postgresqlに接続
 func Connect() *sql.DB {
     user := os.Getenv("POSTGRES_USER")
     dbname := os.Getenv("POSTGRES_DB")
