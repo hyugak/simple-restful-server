@@ -107,6 +107,7 @@ func root(w http.ResponseWriter, r *http.Request) {
     path := string(r.URL.Path)
     if path != "/" {
         handleStatusCode(w, http.StatusNotFound)
+        return
     }
     testData := Test{Message: "Hello World"}
     json, err := json.Marshal(&testData)
@@ -123,7 +124,7 @@ func usersHandlerRoot(w http.ResponseWriter, r *http.Request) {
     switch method {
     case "GET": userIndex(w)
     case "POST": userPost(w, r)
-    default: fmt.Println("no match")
+    default: handleStatusCode(w, http.StatusNotFound)
     }
 }
 
@@ -140,6 +141,7 @@ func usersHandler(w http.ResponseWriter, r *http.Request) {
     case "GET": userShow(w, id)
     case "PUT": userPatch(w, r, id)
     case "DELETE": userDestroy(w, id)
+    default: handleStatusCode(w, http.StatusNotFound)
     }
 }
 
