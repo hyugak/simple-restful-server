@@ -108,14 +108,14 @@ func root(w http.ResponseWriter, r *http.Request) {
     if path != "/" {
         handleStatusCode(w, http.StatusNotFound)
     }
-    //testData := Test{Message: "Hello World"}
-    //json, err := json.Marshal(&testData)
-    //if err != nil {
-    //    handleStatusCode(w, http.StatusInternalServerError)
-    //}
-    // response := string(json)
+    testData := Test{Message: "Hello World"}
+    json, err := json.Marshal(&testData)
+    if err != nil {
+        handleStatusCode(w, http.StatusInternalServerError)
+    }
+    response := string(json)
 
-    handleResponse(w, http.StatusOK, "{message: \"Hello World!!\"}")
+    handleResponse(w, http.StatusOK, response)
 }
 
 func usersHandlerRoot(w http.ResponseWriter, r *http.Request) {

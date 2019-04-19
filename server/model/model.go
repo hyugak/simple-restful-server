@@ -9,15 +9,15 @@ import (
 )
 
 type Test struct {
-    Message string
+    Message string      `json:"message"`
 }
 
 type User struct {
-    Id         int
-    Name       string
-    Email      string
-    Created_at string
-    Updated_at string
+    Id         int      `json:"id"`
+    Name       string   `json:"name"`
+    Email      string   `json:"email"`
+    Created_at string   `json:"created_at"`
+    Updated_at string   `json:"updated_at"`
 }
 
 func Index(db *sql.DB) (users []User) {
