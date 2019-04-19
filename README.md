@@ -2,6 +2,31 @@
 Userに対してHTTPメソッドを用いてCRUD操作を行う事ができるようなRESTfulなWeb Application
 サーバにはGo、DBにはPostgreSQLを使用。docker-composeで起動
 
+ポートはTCP/8081番を使用
+
+## dir structure
+#### `server`
+serverの本体のソースコード（及びbuild後のバイナリファイル）
+
+`main.go` : ハンドラの登録、ハンドラとする関数を記述
+
+`db/db.go` : 環境変数からデータベースへの接続を記述
+
+`model/model.go` : User構造体とそのメソッドを記述
+
+#### `init.sql`
+postgreSQLのコンテナ内で起動時に実行するsqlファイル
+
+#### `Dockerfile`
+server用のdocker imageをbuildするためのDockerfile
+
+#### `docker-compose.yml`
+serverとpostgreSQLのコンテナを協調させて起動させるためのdocker-composeファイル
+
+#### `.env`
+server/postgreSQL containerに読ませる環境変数を記述
+データベースの認証情報などを記述
+
 ## HTTP methods
 ```
 GET    /            # {"Message": "Hello, w"rld!"}を表示
