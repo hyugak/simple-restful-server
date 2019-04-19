@@ -6,6 +6,7 @@ import (
     "net/http"
     "encoding/json"
     "regexp"
+    "os"
     "strconv"
     "io/ioutil"
 	_ "github.com/lib/pq"
@@ -28,7 +29,11 @@ func isDigit(s string) bool{
 }
 
 func connect() *sql.DB {
-	connStr := "host=db user=dev dbname=dev password=secret sslmode=disable"
+    user := os.Getenv("POSTGRES_USER")
+    dbname := os.Getenv("POSTGRES_DB")
+    passwd := os.Getenv("POSTGRES_PASSWORD")
+
+	connStr := "host=db user="+user+" dbname="+dbname+" password="+passwd+" sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		panic(err)
