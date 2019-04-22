@@ -25,6 +25,9 @@ func userIndex(w http.ResponseWriter) {
         fmt.Fprintf(w, "")
     }
     response := string(json)
+    if response == "null" {
+        response = "[]"
+    }
 
     handleResponse(w, http.StatusOK, response)
 }
