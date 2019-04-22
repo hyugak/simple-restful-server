@@ -90,7 +90,7 @@ func (user *User) Update(db *sql.DB) (err error) {
 
 // receiveしたuserデータをjsonに整形し、stringに変換して返す
 func (user *User) ToJson() (s string, err error) {
-    json, err := json.Marshal(&user)
+    json, err := json.MarshalIndent(&user, "", "  ")
     s = string(json)
     return
 }

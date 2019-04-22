@@ -18,7 +18,7 @@ func userIndex(w http.ResponseWriter) {
 
 	users := Index(db)
 
-    json, err := json.Marshal(&users)
+    json, err := json.MarshalIndent(&users, "", "  ")
     if err != nil {
         fmt.Println(err)
         w.WriteHeader(http.StatusInternalServerError)
@@ -122,7 +122,7 @@ func root(w http.ResponseWriter, r *http.Request) {
 
     // Test構造体を初期化してjsonに整形し、最終的にstringに変換
     testData := Test{Message: "Hello World"}
-    json, err := json.Marshal(&testData)
+    json, err := json.MarshalIndent(&testData, "", "  ")
     if err != nil {
         handleStatusCode(w, http.StatusInternalServerError)
     }
