@@ -3,6 +3,7 @@ version: '3'
 services:
   go:
     image: 'hyugak/simple-restful-server:latest'
+    build: .
     container_name: 'go-server'
     ports:
         - "8081:8081"
